@@ -57,7 +57,7 @@ console.log(person1Paragon.Biggest(person1Paragon,person2Paragon));
 const btnAdd = document.getElementById('add');
 const animalForm = document.getElementById('animalForm');
 const owners = [];
-let addedAnimals;
+const nameOwners = [];
 
 class Pets {
     constructor(_petName, _ownerName){
@@ -74,7 +74,6 @@ const existanceOwner = (ownerName) => {
     }
     return false;
 };
-
 
 const printAnimals = () =>{
     let addItem = document.getElementById('addItem');
@@ -94,6 +93,17 @@ btnAdd.addEventListener('click', function(e) {
     const ownerName = document.getElementById ('ownerName').value;
     const newPet = new Pets (petName, ownerName);
     owners.push(newPet);
+    nameOwners.push(newPet.ownerName);
+    console.log(nameOwners);
+    let checkName = newPet.ownerName;
+    for (let i = 0; i < nameOwners.length - 1; i ++){
+         if(checkName === nameOwners[i]){
+            console.log(true);
+         }
+         else{
+            console.log(false);
+         }
+    }
     printAnimals();
     animalForm.reset();
 })
