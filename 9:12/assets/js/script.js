@@ -66,15 +66,6 @@ class Pets {
     }
 }
 
-const existanceOwner = (ownerName) => {
-    for (let i = 0; i < owners.length; i++){
-        if(owners[i].ownerName === ownerName){
-            return true;
-        }
-    }
-    return false;
-};
-
 const printAnimals = () =>{
     let addItem = document.getElementById('addItem');
     addItem.innerHTML= '';
