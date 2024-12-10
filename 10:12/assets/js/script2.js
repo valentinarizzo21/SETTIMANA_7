@@ -1,7 +1,8 @@
 //ES 2
 
+let counter = parseInt(sessionStorage.getItem('counter')) || 0;
 const timer = document.getElementById('timer');
-let counter = 0;
+
 
 setInterval(() => {
     counter ++;
