@@ -34,10 +34,10 @@ function printImage() {
   }
 }
 
-const btnTrash = document.querySelectorAll('.btn-light');
+/*const btnTrash = document.querySelectorAll('.btn-light');
 let arrBtnTrash = Array.from(btnTrash);
 
 arrBtnTrash.forEach((btn) => {
     btn.addEventListener('click', function())
-})
+})*/
 
