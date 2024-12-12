@@ -2,6 +2,8 @@ const apiKey = "u50VDq1ZjwLEZtdTnhJN9DyOoQqocwzYPSgMeETmVxgCsQIUrAamzHsL";
 const cards = document.querySelectorAll(".card");
 const btnLoad = document.querySelector(".btn-primary");
 const btnLoad2 = document.querySelector(".btnLoad2");
+const inputSearch = document.getElementById('inputSearch');
+const btnSearch = document.getElementById('btnSearch'); 
 let column;
 let data;
 let photos;
@@ -39,7 +41,6 @@ btnLoad.addEventListener("click", (e) => {
   column = document.querySelectorAll(".col-md-4");
   column.forEach((e) =>{
     e.classList.remove('hide');
-    console.log('ciao')
   })
 });
 
@@ -53,10 +54,12 @@ btnLoad2.addEventListener("click", (e) => {
 });
 
 function printImage(newQuery) {
+    small = document.querySelectorAll("small");
   for (let i = 0; i < cards.length; i++) {
     let image = cards[i].querySelector(".card-img-top");
     //let image = document.querySelector(${cards[i]} .card-img-top);
     image.setAttribute("src", photos[i].src.original);
+    small[i].innerText = photos[i].id;
     
   }
   query = newQuery;
@@ -87,5 +90,8 @@ function createUrl() {
   
   addClass();
 
-  
+btnSearch.addEventListener('click', (e) =>{
+    e.preventDefault();
+    callGetPhotos(inputSearch.value);
+});
   
