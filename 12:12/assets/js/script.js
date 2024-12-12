@@ -7,60 +7,70 @@ let photos;
 let url = "https://api.pexels.com/v1/search?query=mountain&per_page=9";
 let query;
 
-
 async function getPhotos() {
-    try {
-        let response = await fetch(
-            createUrl(),
-            {
-                headers: {
-                    "Authorization":
-                        "u50VDq1ZjwLEZtdTnhJN9DyOoQqocwzYPSgMeETmVxgCsQIUrAamzHsL",
-                },
-            }
-        );
-        data = await response.json();
-        photos = data.photos;
-        printImage();
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    let response = await fetch(createUrl(), {
+      headers: {
+        Authorization:
+          "u50VDq1ZjwLEZtdTnhJN9DyOoQqocwzYPSgMeETmVxgCsQIUrAamzHsL",
+      },
+    });
+    data = await response.json();
+    photos = data.photos;
+    printImage();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function callGetPhotos(newQuery) {
-    query = newQuery;
-    try {
-        getPhotos();
-    } catch (error) {
-        console.log(error);
-    }
+  query = newQuery;
+  try {
+    getPhotos();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 btnLoad.addEventListener("click", (e) => {
-    e.preventDefault();
-    callGetPhotos("mountains");
+  e.preventDefault();
+  callGetPhotos("mountains");
 });
 
 btnLoad2.addEventListener("click", (e) => {
-    e.preventDefault();
-    callGetPhotos("sunset");
+  e.preventDefault();
+  callGetPhotos("sunset");
 });
 
 function printImage(newQuery) {
-    for (let i = 0; i < cards.length; i++) {
-        let image = cards[i].querySelector(".card-img-top");
-        //let image = document.querySelector(${cards[i]} .card-img-top);
-        image.setAttribute("src", photos[i].src.original);
-    }
-    query = newQuery;
+  for (let i = 0; i < cards.length; i++) {
+    let image = cards[i].querySelector(".card-img-top");
+    //let image = document.querySelector(${cards[i]} .card-img-top);
+    image.setAttribute("src", photos[i].src.original);
+  }
+  query = newQuery;
 }
 
 function createUrl() {
-    if (!query) {
-        return `https://api.pexels.com/v1/search?query=mountain&per_page=9`;
-    } else {
-        url = `https://api.pexels.com/v1/search?query=${query}&per_page=9`;
-        return url;
-    }
+  if (!query) {
+    return `https://api.pexels.com/v1/search?query=mountain&per_page=9`;
+  } else {
+    url = `https://api.pexels.com/v1/search?query=${query}&per_page=9`;
+    return url;
+  }
 }
 
+
+  function addClass() {
+    const btns = document.querySelectorAll(".btn-sm");
+    btns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const column = btn.closest(".col-md-4");
+        column.classList.add("hide");
+      });
+    });
+  }
+  
+  addClass();
+  
