@@ -2,6 +2,7 @@ const apiKey = "u50VDq1ZjwLEZtdTnhJN9DyOoQqocwzYPSgMeETmVxgCsQIUrAamzHsL";
 const cards = document.querySelectorAll(".card");
 const btnLoad = document.querySelector(".btn-primary");
 const btnLoad2 = document.querySelector(".btnLoad2");
+let column;
 let data;
 let photos;
 let url = "https://api.pexels.com/v1/search?query=mountain&per_page=9";
@@ -35,11 +36,20 @@ async function callGetPhotos(newQuery) {
 btnLoad.addEventListener("click", (e) => {
   e.preventDefault();
   callGetPhotos("mountains");
+  column = document.querySelectorAll(".col-md-4");
+  column.forEach((e) =>{
+    e.classList.remove('hide');
+    console.log('ciao')
+  })
 });
 
 btnLoad2.addEventListener("click", (e) => {
   e.preventDefault();
   callGetPhotos("sunset");
+  column = document.querySelectorAll(".col-md-4");
+  column.forEach((e) =>{
+    e.classList.remove('hide');
+  })
 });
 
 function printImage(newQuery) {
@@ -47,6 +57,7 @@ function printImage(newQuery) {
     let image = cards[i].querySelector(".card-img-top");
     //let image = document.querySelector(${cards[i]} .card-img-top);
     image.setAttribute("src", photos[i].src.original);
+    
   }
   query = newQuery;
 }
@@ -62,15 +73,19 @@ function createUrl() {
 
 
   function addClass() {
-    const btns = document.querySelectorAll(".btn-sm");
+    const btns = document.querySelectorAll(".btn-sm:last-of-type");
+    
     btns.forEach((btn) => {
+        btn.innerText= 'HIDE';
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-        const column = btn.closest(".col-md-4");
+        column = btn.closest(".col-md-4");
         column.classList.add("hide");
       });
     });
   }
   
   addClass();
+
+  
   
