@@ -1,8 +1,6 @@
 const card = document.querySelectorAll(".card");
-
-let myMovies;
-
 const url = "https://striveschool-api.herokuapp.com/books";
+let myMovies;
 
 document.addEventListener("load", init());
 
@@ -34,10 +32,16 @@ function printImage() {
   }
 }
 
-/*const btnTrash = document.querySelectorAll('.btn-light');
+const btnTrash = document.querySelectorAll('.btn-light');
 let arrBtnTrash = Array.from(btnTrash);
+let arrCards = Array.from(card);
 
-arrBtnTrash.forEach((btn) => {
-    btn.addEventListener('click', function())
-})*/
+arrBtnTrash.forEach((card) => {
+   
+btnTrash.addEventListener('click', function(e){
+  e.preventD      
+})
+})
+
+
 
