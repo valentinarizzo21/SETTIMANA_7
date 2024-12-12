@@ -2,8 +2,8 @@ const apiKey = "u50VDq1ZjwLEZtdTnhJN9DyOoQqocwzYPSgMeETmVxgCsQIUrAamzHsL";
 const cards = document.querySelectorAll(".card");
 const btnLoad = document.querySelector(".btn-primary");
 const btnLoad2 = document.querySelector(".btnLoad2");
-const inputSearch = document.getElementById('inputSearch');
-const btnSearch = document.getElementById('btnSearch'); 
+const inputSearch = document.getElementById("inputSearch");
+const btnSearch = document.getElementById("btnSearch");
 let column;
 let data;
 let photos;
@@ -39,28 +39,31 @@ btnLoad.addEventListener("click", (e) => {
   e.preventDefault();
   callGetPhotos("mountains");
   column = document.querySelectorAll(".col-md-4");
-  column.forEach((e) =>{
-    e.classList.remove('hide');
-  })
+  column.forEach((e) => {
+    e.classList.remove("hide");
+  });
 });
 
 btnLoad2.addEventListener("click", (e) => {
   e.preventDefault();
   callGetPhotos("sunset");
   column = document.querySelectorAll(".col-md-4");
-  column.forEach((e) =>{
-    e.classList.remove('hide');
-  })
+  column.forEach((e) => {
+    e.classList.remove("hide");
+  });
 });
 
 function printImage(newQuery) {
-    small = document.querySelectorAll("small");
+  small = document.querySelectorAll("small");
   for (let i = 0; i < cards.length; i++) {
     let image = cards[i].querySelector(".card-img-top");
+    image.addEventListener('click', (e) =>{
+        e.preventDefault();
+        window.location.href = photos[i].src.original;
+    })
     //let image = document.querySelector(${cards[i]} .card-img-top);
     image.setAttribute("src", photos[i].src.original);
     small[i].innerText = photos[i].id;
-    
   }
   query = newQuery;
 }
@@ -74,24 +77,29 @@ function createUrl() {
   }
 }
 
+function addClass() {
+  const btns = document.querySelectorAll(".btn-sm:last-of-type");
 
-  function addClass() {
-    const btns = document.querySelectorAll(".btn-sm:last-of-type");
-    
-    btns.forEach((btn) => {
-        btn.innerText= 'HIDE';
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        column = btn.closest(".col-md-4");
-        column.classList.add("hide");
-      });
+  btns.forEach((btn) => {
+    btn.innerText = "HIDE";
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      column = btn.closest(".col-md-4");
+      column.classList.add("hide");
     });
-  }
-  
-  addClass();
+  });
+}
 
-btnSearch.addEventListener('click', (e) =>{
-    e.preventDefault();
-    callGetPhotos(inputSearch.value);
+addClass();
+
+btnSearch.addEventListener("click", (e) => {
+  e.preventDefault();
+  callGetPhotos(inputSearch.value);
+  column = document.querySelectorAll(".col-md-4");
+  column.forEach((e) => {
+    e.classList.remove("hide");
+  });
+  inputSearch.value= '';
 });
-  
+
+
