@@ -57,15 +57,19 @@ function printImage(newQuery) {
   small = document.querySelectorAll("small");
   for (let i = 0; i < cards.length; i++) {
     let image = cards[i].querySelector(".card-img-top");
-    image.addEventListener('click', (e) =>{
-        e.preventDefault();
-        window.location.href = photos[i].src.original;
-    })
+    
     //let image = document.querySelector(${cards[i]} .card-img-top);
     image.setAttribute("src", photos[i].src.original);
     small[i].innerText = photos[i].id;
+    image.addEventListener('click', (e) =>{
+        e.preventDefault();
+        let page2 = 'images.html';
+        let newUrl = `${page2}?photoId=${photos[i].id}`;
+        window.location.href= newUrl;
+    })
   }
-  query = newQuery;
+ 
+query=newQuery
 }
 
 function createUrl() {
